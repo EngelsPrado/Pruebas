@@ -43,7 +43,18 @@ const Post = (props) => {
                     </div>
                     <div class="card-footer">
                         <a href="/" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a href="/" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a class="card-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa fa-comment"></i> Comment
+                        </a>
+
+                        <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                        <div className="form-group">
+                                <label className="sr-only" for="message">post</label>
+                                <textarea className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                            </div>
+                        </div>
+                        </div>
                         <a href="/" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
