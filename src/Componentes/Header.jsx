@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './style.css'
-import './../css/styles.css'
 import {Link} from '@reach/router'
 const Header=()=>{
 

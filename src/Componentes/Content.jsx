@@ -15,7 +15,7 @@ const Content=()=>{
     <div>
        <div class="container hero">
         <div class="row mt-5">
-            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1 mt-5">
+            <div class="col-12 col-lg-5 col-xl-5 offset-xl-1 mt-5">
                 <h1>Breath is here.</h1>
                 <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis sapien viverra convallis. In non tempus lorem. </p><button class="btn btn-light btn-lg action-button" type="button">Learn More</button></div>
             <div
