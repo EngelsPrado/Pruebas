@@ -2,6 +2,9 @@ import React from 'react'
 import p1 from './img/1.jpg'
 import p2 from './img/2.jpg'
 import p3 from './img/3.jpg'
+import logo from './iphone.svg'
+import './style.css'
+import './../css/styles.css'
 
 const Content=()=>{
 
@@ -10,7 +13,20 @@ const Content=()=>{
     return (
 
     <div>
-        
+       <div class="container hero">
+        <div class="row mt-5">
+            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1 mt-5">
+                <h1>Breath is here.</h1>
+                <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis sapien viverra convallis. In non tempus lorem. </p><button class="btn btn-light btn-lg action-button" type="button">Learn More</button></div>
+            <div
+                class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder ml-5">
+                <div class="iphone-mockup"><img className="device" src={logo}  />
+                    <div class="screen"></div>
+            </div>
+        </div>
+    </div>
+    </div>   
+
     <div class="features-blue">
         <div class="container">
       
