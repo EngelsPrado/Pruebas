@@ -16,8 +16,7 @@ function App() {
     <div className="App">
       
       <Header></Header>
-      <Chat/>
-     {/* <Chat></Chat> */}
+      {/* <Chat/> */}
  
       <Router>
         <Content path='/' />
