@@ -9,7 +9,7 @@ const Login= ()=>{
 
             <div>
         
-        <div class="login-clean" style="height: 100vh;">
+        <div class="login-clean" >
         <form method="post">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
@@ -25,5 +25,4 @@ const Login= ()=>{
 
 
 }
-
-
+export default Login
