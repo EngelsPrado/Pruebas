@@ -1,13 +1,20 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,useContext} from 'react'
 import Info from './components/Info';
 import Nav from './components/Nav';
 import Publication from './components/Publication';
 import AsideInfo from './components/Aside_Info';
 import './style.css'
+import { UserContext } from './../../Providers/UserProvider'
+import Login from '../InicioSesion/Login';
 
 const Home =()=>{
+
+    const user = useContext(UserContext);
+
     return (
-        <Fragment>
+        
+       user?<Fragment>
+            
             <Nav/>
             <div class="container-fluid gedf-wrapper">
                 <div class="row">
@@ -24,7 +31,9 @@ const Home =()=>{
                 <AsideInfo/>
                 </div>
             </div>
-        </Fragment>
+            
+        </Fragment>:<Login></Login>
+        
     )
 }
 

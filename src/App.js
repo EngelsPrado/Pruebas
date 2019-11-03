@@ -17,10 +17,7 @@ function App() {
       
       <Header></Header>
      {/* <Chat></Chat> */}
-  {/* <Content></Content> */}
-      
-      {/* <Home></Home> */}
-       
+ 
       <Router>
         <Content path='/' />
         <Home path="/home" />

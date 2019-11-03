@@ -1,7 +1,17 @@
-import React from 'react'
-
+import React,{useContext,Fragment} from 'react'
+import { UserContext } from './../Providers/UserProvider'
 import {Link} from '@reach/router'
+import { signOut} from './../firebase';
 const Header=()=>{
+     const user = useContext(UserContext);
+   
+      
+      
+     const Auth=()=>{
+        return user ? <button onClick={signOut} >Salir</button>:<Fragment>
+        <span  class="navbar-text btn-light action-button btn"><button class="login" to="/login" >Log In</button></span><button class="navbar-text btn btn-light action-button" role="button" to="/login">Sign Up</button>     
+        </Fragment>
+     }
 
   return(
      <div>
@@ -17,7 +27,11 @@ const Header=()=>{
                   </ul>
                   <form class="form-inline mr-auto" target="_self">
                       
-                  </form><span  class="navbar-text btn-light action-button btn"><a class="login" href="/login.html" >Log In</a></span><a class="navbar-text btn btn-light action-button" role="button" href="/signup.html">Sign Up</a></div>
+                  </form>
+                 {
+                  <Auth></Auth>  
+                 }
+                 </div>
           </div>
       </nav>
       
