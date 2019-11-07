@@ -5,7 +5,7 @@ import { signOut} from './../firebase';
 const Header=()=>{
      const user = useContext(UserContext);
    
-      
+     
       
      const Auth=()=>{
         return user ? <button onClick={signOut} >Salir</button>:<Fragment>
