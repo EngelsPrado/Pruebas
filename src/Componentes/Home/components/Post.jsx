@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
 
 const Post = (props) => {
+
+   console.log("holis")
+
     return (
         <Fragment>
             <div class="card gedf-card">

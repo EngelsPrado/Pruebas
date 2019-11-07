@@ -1,6 +1,35 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState,useContext } from 'react'
+import {firestore,auth} from './../../../firebase'
+import { UserContext } from './../../../Providers/UserProvider'
 
 const Share = () => {
+    
+    const user = useContext(UserContext); 
+    const [share,setShare]=useState('');
+     
+    const Share=()=>{
+    
+      let currentUser=auth.currentUser 
+       console.log(currentUser)
+       const post = {
+      
+        share,
+        user: {
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
+        },
+        favorites: 0,
+        comments: 0,
+        createdAt:  Math.round((new Date()).getTime() / 1000),
+      }
+    
+      firestore.collection("posts").add(post) 
+      setShare('')
+
+    }
+
+    console.log(share)
     return (
         <Fragment>
             <div className="card gedf-card">
@@ -20,7 +49,7 @@ const Share = () => {
                         <div className="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                             <div className="form-group">
                                 <label className="sr-only" for="message">post</label>
-                                <textarea className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                <textarea value={share} onChange={(e)=>setShare( e.target.value)}  className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
                             </div>
 
                         </div>
@@ -36,7 +65,7 @@ const Share = () => {
                     </div>
                     <div className="btn-toolbar justify-content-between">
                         <div className="btn-group">
-                            <button type="submit" className="btn btn-primary">share</button>
+                            <button type="submit" onClick={Share} className="btn btn-primary">share</button>
                         </div>
                         <div className="btn-group">
                             <button id="btnGroupDrop1" type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
