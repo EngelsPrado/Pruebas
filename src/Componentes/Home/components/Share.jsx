@@ -1,18 +1,18 @@
 import React, { Fragment,useState,useContext } from 'react'
 import {firestore,auth} from './../../../firebase'
 import { UserContext } from './../../../Providers/UserProvider'
-
+const uuidv4 = require('uuid/v4');
 const Share = () => {
     
     const user = useContext(UserContext); 
     const [share,setShare]=useState('');
-     
+    const id= uuidv4()
     const Share=()=>{
     
       let currentUser=auth.currentUser 
        console.log(currentUser)
        const post = {
-      
+        id,
         share,
         user: {
           uid: currentUser.uid,
@@ -24,7 +24,7 @@ const Share = () => {
         createdAt:  Math.round((new Date()).getTime() / 1000),
       }
     
-      firestore.collection("posts").add(post) 
+      firestore.collection("posts").doc(id).set(post) 
       setShare('')
 
     }

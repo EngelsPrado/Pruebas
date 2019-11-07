@@ -3,9 +3,12 @@ import Share from './Share'
 import Post from './Post'
 import {firestore,auth} from './../../../firebase'
 import moment from 'moment'
+
 const Publication = () => {
 
     const [post,setPost]=useState(null)
+  
+
     console.log(post)
    useEffect(()=>{
   
@@ -29,6 +32,7 @@ const Publication = () => {
                   console.log(post.data())
                   let data=post.data()
                  return <Post
+                  id={data.id} 
                   userImage = {data.user.photoURL}
                   userName = {data.user.displayName}
                   fullName = {data.user.displayName}
