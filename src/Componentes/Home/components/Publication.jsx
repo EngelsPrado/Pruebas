@@ -1,35 +1,48 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Share from './Share'
 import Post from './Post'
+import {firestore,auth} from './../../../firebase'
+import moment from 'moment'
 
 const Publication = () => {
+
+    const [post,setPost]=useState(null)
+  
+
+    console.log(post)
+   useEffect(()=>{
+  
+    async function getData(){
+
+       let posts=await firestore.collection("posts").get()
+       
+       setPost(posts)
+     }
+
+     getData()
+
+   },[])
+
     return (
         <div class="col-md-6 gedf-main">
             <Share/>
-            <Post
-                userImage = "https://picsum.photos/50/50"
-                userName = "LeeCross"
-                fullName = "Miracles Lee Cross"
-                timeShared = "10 min ago"
-                linkPrincipal = "Lorem ipsum dolor sit amet, consectetur adip."
-                content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates."
-            />
-            <Post
-                userImage = "https://picsum.photos/50/50"
-                userName = "Kevin"
-                fullName = "Kevin Hernandez Gomez"
-                timeShared = "20 min ago"
-                linkPrincipal = "https://github.com/kevinTibu/Hackathon"
-                content = "Everything is good men"
-            />
-            <Post
-                userImage = "https://picsum.photos/50/50"
-                userName = "Kevin Esquivel"
-                fullName = "Kevin Esquivel"
-                timeShared = "2 seg ago"
-                linkPrincipal = "Kevinesquivelrojas@hotmail.com"
-                content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates."
-            />
+
+            {
+              post && post.docs.map(post=>{
+                  console.log(post.data())
+                  let data=post.data()
+                 return <Post
+                  id={data.id} 
+                  userImage = {data.user.photoURL}
+                  userName = {data.user.displayName}
+                  fullName = {data.user.displayName}
+                  timeShared = {moment(new Date(data.createdAt *1000)).fromNow()}
+                  linkPrincipal = "Lorem ipsum dolor sit amet, consectetur adip."
+                  content = {data.share}
+                />
+              })  
+            }
+            
         </div>
     )
 }

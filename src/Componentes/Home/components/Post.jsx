@@ -1,6 +1,24 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState } from 'react'
+const uuidv4 = require('uuid/v4');
 
 const Post = (props) => {
+
+   const [idPost,setIdPost]=useState(props.id)
+   const [id,setId]=useState('collapseExample'+uuidv4())
+   const [coment,setComent]=useState('')
+
+   const comentar=()=>{
+  
+    
+    console.log(coment)
+
+    console.log(idPost)
+
+     
+
+
+   }
+
     return (
         <Fragment>
             <div class="card gedf-card">
@@ -43,15 +61,16 @@ const Post = (props) => {
                     </div>
                     <div class="card-footer">
                         <a href="/" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                        <a class="card-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a class="card-link" data-toggle="collapse" href={`#${id}`} role="button" aria-expanded="false" aria-controls="collapseExample">
                         <i class="fa fa-comment"></i> Comment
                         </a>
 
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id={id}>
                         <div class="card card-body">
-                        <div className="form-group">
+                             <div className="form-group">
                                 <label className="sr-only" for="message">post</label>
-                                <textarea className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                <textarea value={coment} onChange={(evt=>{setComent(evt.target.value)})} className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                <button onClick={comentar}  type="button" class="btn btn-outline-info">Comentar</button>
                             </div>
                         </div>
                         </div>
