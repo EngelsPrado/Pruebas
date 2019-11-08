@@ -8,8 +8,8 @@ const Header=()=>{
      
       
      const Auth=()=>{
-        return user ? <button onClick={signOut} >Salir</button>:<Fragment>
-        <span  class="navbar-text btn-light action-button btn"><button class="login" to="/login" >Log In</button></span><button class="navbar-text btn btn-light action-button" role="button" to="/login">Sign Up</button>     
+        return user ? <button class="btn-light action-button btn" onClick={signOut} >Salir</button>:<Fragment>
+        <button class="btn-light action-button btn" to="/login" >Log In</button><button class=" btn btn-light action-button" role="button" to="/login">Sign Up</button>     
         </Fragment>
      }
 

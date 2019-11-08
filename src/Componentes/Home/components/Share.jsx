@@ -65,7 +65,7 @@ const Share = () => {
                     </div>
                     <div className="btn-toolbar justify-content-between">
                         <div className="btn-group">
-                            <button type="submit" onClick={Share} className="btn btn-primary">share</button>
+                            <button type="submit" onClick={Share} className="btn-light action-button btn share">share</button>
                         </div>
                         <div className="btn-group">
                             <button id="btnGroupDrop1" type="button" className="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
