@@ -1,4 +1,5 @@
 import React from 'react'
+import Search from './NavContents/Search'
 
 const Nav = (props) => {
     return (
@@ -7,16 +8,7 @@ const Nav = (props) => {
 
                 <a className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank" rel="noopener noreferrer">User profile</a>
 
-                <form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                    <div className="form-group mb-0">
-                        <div className="input-group input-group-alternative">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text"><i className="fas fa-search"></i></span>
-                            </div>
-                            <input className="form-control" placeholder="Search" type="text" />
-                        </div>
-                    </div>
-                </form>
+                <Search/>
 
                 {/* Options profile */}
                 <ul className="navbar-nav align-items-center d-none d-md-flex">
