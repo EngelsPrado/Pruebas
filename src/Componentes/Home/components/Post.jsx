@@ -1,11 +1,31 @@
-import React, { Fragment,useState } from 'react'
+import React, { Fragment,useState,useEffect } from 'react'
+import {firestore,auth} from './../../../firebase'
+import './style.css'
+import moment from 'moment'
 const uuidv4 = require('uuid/v4');
-
 const Post = (props) => {
 
    const [idPost,setIdPost]=useState(props.id)
    const [id,setId]=useState('collapseExample'+uuidv4())
    const [coment,setComent]=useState('')
+   const [listComents,setList]=useState(null)
+
+   useEffect(()=>{
+     let comentarios
+  
+    async function getComents(){
+
+        comentarios=await firestore.collection("posts").doc(idPost).collection("coments").get()
+        setList(comentarios)
+      
+
+    }  
+
+    getComents()
+
+  },[idPost]) 
+   
+  console.log(listComents)
 
    const comentar=()=>{
   
@@ -13,10 +33,21 @@ const Post = (props) => {
     console.log(coment)
 
     console.log(idPost)
+    const user=auth.currentUser  
 
+     const comentario={
+       content: coment,
+       usuario:{
+          id:user.uid,
+          name:user.displayName,
+          photo:user.photoURL  
+       },
+       createdAt:  Math.round((new Date()).getTime() / 1000),
+       
+     }
+  
+     firestore.collection("posts").doc(idPost).collection("coments").add(comentario) 
      
-
-
    }
 
     return (
@@ -72,8 +103,36 @@ const Post = (props) => {
                                 <textarea value={coment} onChange={(evt=>{setComent(evt.target.value)})} className="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
                                 <button onClick={comentar}  type="button" class="btn btn-outline-info">Comentar</button>
                             </div>
+
+                            <div class="comment-main-level">
+                          
+                             
+                               {
+                                  listComents && listComents.docs.map(data=>{
+                                    return <Fragment>
+                                     <div class="comment-avatar"><img src={data.data().usuario.photo} className="rounded-circle" alt=""/></div>
+
+                                         <div class="comment-box">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{data.data().usuario.name}</a></h6>
+                                                <span> {moment(new Date(data.data().createdAt *1000)).fromNow()}</span>
+                                                <i class="fa fa-reply"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </div>
+                                            <div class="comment-content">
+                                               {
+                                                   data.data().content
+                                               } 
+                                            </div>
+                                        </div>
+                                    </Fragment> 
+
+                                  })  
+                               }
+                            </div>
+                            </div>
                         </div>
-                        </div>
+                      
                         <a href="/" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                     </div>
                 </div>
